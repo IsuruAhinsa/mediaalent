@@ -10,11 +10,18 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use Illuminate\Support\Facades\Route;
+use TCG\Voyager\Facades\Voyager;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
+// Posts(News)
+Route::get('post', 'PostController@index')->name('post.index');
+Route::get('post/{slug}', 'PostController@show')->name('post.show');
+
+/*Route::get('{slug}', 'PagesController@show')->name('page.show');*/
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
