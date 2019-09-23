@@ -33,6 +33,8 @@ Route::get('events/{id}', 'AlbumController@event_images')->name('event.image');
 Route::get('photobooths', 'AlbumController@photobooth')->name('photobooth.album');
 Route::get('photobooths/{id}', 'AlbumController@photobooth_images')->name('photobooth.image');
 
+Route::get('download/{id}', 'AlbumController@download')->name('album.download');
+
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
