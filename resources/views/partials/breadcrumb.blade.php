@@ -29,6 +29,12 @@
                         <small class="text-white">{{ $photos->album['description'] }}</small>
                     @endif
 
+                    <br><br>
+
+                    @if(isset($download))
+                        <a href="{{ route('album.downloads', [$photos->id]) }}" class="btn alime-btn mb-3 mb-sm-0 mr-4">Download {{ strtolower($photos->album['name']) }} Full Album</a>
+                    @endif
+
                 </div>
 
             </div>

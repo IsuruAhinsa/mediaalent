@@ -6,6 +6,7 @@ use App\Album;
 use App\Category;
 use App\Photo;
 use Illuminate\Http\Request;
+use TCG\Voyager\Voyager;
 
 class AlbumController extends Controller
 {
@@ -74,8 +75,18 @@ class AlbumController extends Controller
         return view('albums.show', ['photos' => $photos]);
     }
 
-    public function download($id = null)
+    public function downloads($id = null)
     {
-        //$download = Photo::
+        $photos = Photo::findById($id);
+        $zipname = strtolower($photos->album['name']).'.zip';
+        $zip = new \ZipArchive;
+        $zip->open($zipname, \ZipArchive::CREATE | \ZipArchive::OVERWRITE);
+        $images = json_decode($photos->image);
+        $path = storage_path(dirname($images[0]));
+        foreach ($images as $image) {
+            $zip->addFile('storage/'.$image);
+        }
+        $zip->close();
+        return response()->download($zipname);
     }
 }

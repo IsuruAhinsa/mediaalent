@@ -5,16 +5,17 @@
 @section('content')
 
     <!-- Breadcrumb Area Start -->
-    @include('partials.breadcrumb', ['title' => $photos->album['name'], 'page' => $photos->album['name'], 'bg_img' => $photos->album['cover']])
+    @include('partials.breadcrumb', [
+        'title' => $photos->album['name'],
+        'page' => $photos->album['name'],
+        'bg_img' => $photos->album['cover'],
+        'download' => true
+      ])
     <!-- Breadcrumb Area End -->
 
     <div class="alime-portfolio-area section-padding-80 clearfix">
 
         <div class="container-fluid">
-
-            <div class="row d-flex justify-content-center mb-4 text-dark">
-                <a href="{{ route('album.download', [$photos->id]) }}" class="btn btn-primary mb-3 mb-sm-0 mr-4">Download {{ strtolower($photos->album['name']) }} Full Album</a>
-            </div>
 
             <div class="row alime-portfolio">
 
